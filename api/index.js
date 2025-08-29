@@ -80,6 +80,12 @@ app.post('/bfhl', (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// This line is for local development only. Vercel ignores it.
+if (process.env.VERCEL_ENV !== 'production') {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+
+// Export the app for Vercel
+module.exports = app;
